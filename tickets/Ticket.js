@@ -1,8 +1,9 @@
 class Ticket {
 
-    constructor(id, subject, description){
+    constructor(id, subject, type, description){
         this.id = id
         this.subject = subject
+        this.type = type
         this.description = description
     }
 
@@ -15,6 +16,10 @@ class Ticket {
         return this.subject
     }
 
+    getType(){
+        return this.type
+    }
+    
     getDescription() {
         return this.description
     }

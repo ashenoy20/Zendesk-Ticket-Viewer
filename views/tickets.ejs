@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Viewer</title>
+</head>
+<body>
+    <div>
+        <h1>Page <%= pageNum %> </h1>
+
+        <% if(pageNum > 1 && pageNum < Math.ceil(value/ticketsPerPage)){ %>
+            <% let newNum = pageNum %> 
+            <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
+            <A href="http://localhost:8080/tickets/<%= ++newNum %>">Next Page</A>
+        <% }else if(pageNum === 1){ %> 
+            <A href="http://localhost:8080/tickets/<%= ++pageNum %>">Next Page</A>
+        <% }else{ %> 
+            <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
+        <% } %> 
+    </div>
+    
+    <br>
+    
+    <% for(let x = 0; x < ticketData.length; x++){ %>
+        <div>
+            <b><%= ticketData[x].getId() %></b>
+            <%= ticketData[x].getSubject() %>
+            
+            <A href="http://localhost:8080/tickets/view/<%= ticketData[x].getId() %>">
+                View Ticket
+            </A>
+        </div> 
+        <hr>
+    <% } %> 
+
+</body>
+</html>
