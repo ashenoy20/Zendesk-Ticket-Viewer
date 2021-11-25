@@ -9,14 +9,17 @@
 <body>
     <div>
         <h1>Page <%= pageNum %> </h1>
+        <p>Showing <%= ticketData.length %> ticket(s) out of <%= value %> tickets</p>
 
-        <% if(pageNum > 1 && pageNum < Math.ceil(value/ticketsPerPage)){ %>
+        <% pageNum = parseInt(pageNum) %>
+        <% if(pageNum > 1 && pageNum < Math.ceil(value/TICKETS_PER_PAGE)){ %>
             <% let newNum = pageNum %> 
             <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
             <A href="http://localhost:8080/tickets/<%= ++newNum %>">Next Page</A>
-        <% }else if(pageNum === 1){ %> 
+        <% }else if(pageNum === 1 && value > TICKETS_PER_PAGE){ %> 
             <A href="http://localhost:8080/tickets/<%= ++pageNum %>">Next Page</A>
-        <% }else{ %> 
+        <% }else if(pageNum === Math.ceil(value/TICKETS_PER_PAGE) && pageNum !== 1){ %> 
+             
             <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
         <% } %> 
     </div>
