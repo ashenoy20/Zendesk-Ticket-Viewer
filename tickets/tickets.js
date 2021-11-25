@@ -13,8 +13,8 @@ const USERNAME = process.env.ACCNT_USR
 const PASSWORD = process.env.ACCNT_PWD
 
 const DNE_ERROR_MSG = "No tickets exist here"
-const PAGE_ERROR_MSG = "Invalid page number"
-const TICKET_ERROR_MSG = "Ticket not found (invalid id)"
+const PAGE_ERROR_MSG = "Invalid page number or API unavailable"
+const TICKET_ERROR_MSG = "Ticket not found (invalid id) or API unavailable"
 const API_ERROR_MSG = "API unavailable"
 
 router.get("/:pageNum", async (req, res, next) => {
@@ -25,11 +25,17 @@ router.get("/:pageNum", async (req, res, next) => {
     } 
 
     const ticketResponse = await getTickets(pageNum, TICKETS_PER_PAGE, next)
-    const value =  await getTotalCount(next)
 
-    if(!ticketResponse || !value){
+    if(!ticketResponse){
         return res.end()
     }
+
+    const value =  await getTotalCount(next)
+
+    if(!value){
+        return res.end()
+    }
+    
 
     const ticketData = convertTickets(ticketResponse)
 
@@ -137,3 +143,4 @@ module.exports.makeRequest = makeRequest
 module.exports.getTickets = getTickets
 module.exports.getSingleTicket = getSingleTicket
 module.exports.getTotalCount = getTotalCount
+module.exports.convertTickets = convertTickets

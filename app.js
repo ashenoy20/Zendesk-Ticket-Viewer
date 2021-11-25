@@ -21,7 +21,7 @@ app.use('*', (req, res, next) => {
 
 app.use((err, req, res, next) => {
     const {message, status} = err
-    res.render('../views/error', {message, status})
+    res.status(status).render('../views/error', {message, status})
 })
 
 const PORT = 8080

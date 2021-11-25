@@ -1,5 +1,6 @@
 const axios = require('axios')
-const {makeRequest, getTickets, getSingleTicket, getTotalCount} = require('../tickets/tickets')
+const {makeRequest, getTickets, getSingleTicket, getTotalCount, convertTickets} = require('./tickets')
+const Ticket = require('./Ticket')
 
 const mockNextFn = (placeholder) => {}
 
@@ -24,8 +25,6 @@ describe("makeRequest Test", () => {
     })
 
 })
-
-
 
 describe("getTickets Test", () => {
     describe("When parameters are valid", () => {
@@ -88,8 +87,6 @@ describe("getTickets Test", () => {
     
 
 })
-
-
 
 describe("getSingleTicket Test", () => {
     describe("When parameters are valid", () => {
@@ -176,3 +173,44 @@ describe("getTotalCount Test", () => {
 
 })
 
+describe("convertTickets Test", () => {
+    describe("When input is an array with length >= 1", () => {
+        it("Should return an array with items of type Ticket", () => {
+            const sampleArrResponse = [
+                {
+                    id: 1,
+                    created_on: "today",
+                    subject: "test",
+                    description: "test"
+                },
+                {
+                    id: 2,
+                    created_on: "today",
+                    subject: "test",
+                    description: "test"
+                },
+                {
+                    id: 3,
+                    created_on: "today",
+                    subject: "test",
+                    description: "test"
+                }
+            ]
+
+            const result = convertTickets(sampleArrResponse)
+
+            expect(result[0]).toBeInstanceOf(Ticket)
+            expect(result.length).toEqual(sampleArrResponse.length)
+        })
+    })
+
+    describe("When input is an empty array", () => {
+        it("Should return null", () => {
+            const sampleArrResponse = []
+
+            const result = convertTickets(sampleArrResponse)
+
+            expect(result).toBeNull()
+        })
+    })
+})
