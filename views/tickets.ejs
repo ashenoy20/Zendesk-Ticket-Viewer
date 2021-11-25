@@ -8,19 +8,20 @@
 </head>
 <body>
     <div>
-        <h1>Page <%= pageNum %> </h1>
+        <h1>Page <%= pageNum %></h1>
+        <A href="http://localhost:<%= PORT %>/">Home</A>
         <p>Showing <%= ticketData.length %> ticket(s) out of <%= value %> tickets</p>
 
         <% pageNum = parseInt(pageNum) %>
         <% if(pageNum > 1 && pageNum < Math.ceil(value/TICKETS_PER_PAGE)){ %>
             <% let newNum = pageNum %> 
-            <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
-            <A href="http://localhost:8080/tickets/<%= ++newNum %>">Next Page</A>
+            <A href="http://localhost:<%= PORT %>/tickets/<%= --pageNum %>">Previous Page</A>
+            <A href="http://localhost:<%= PORT %>/tickets/<%= ++newNum %>">Next Page</A>
         <% }else if(pageNum === 1 && value > TICKETS_PER_PAGE){ %> 
-            <A href="http://localhost:8080/tickets/<%= ++pageNum %>">Next Page</A>
+            <A href="http://localhost:<%= PORT %>/tickets/<%= ++pageNum %>">Next Page</A>
         <% }else if(pageNum === Math.ceil(value/TICKETS_PER_PAGE) && pageNum !== 1){ %> 
              
-            <A href="http://localhost:8080/tickets/<%= --pageNum %>">Previous Page</A>
+            <A href="http://localhost:<%= PORT %>/tickets/<%= --pageNum %>">Previous Page</A>
         <% } %> 
     </div>
     
@@ -28,9 +29,10 @@
     
     <% for(let x = 0; x < ticketData.length; x++){ %>
         <div>
-            <b><%= ticketData[x].getId() %></b>
-            <%= ticketData[x].getSubject() %>
-            
+            <b>Ticket #<%= ticketData[x].getId() %>:</b>
+            <%=ticketData[x].getSubject() %>
+
+            |
             <A href="http://localhost:8080/tickets/view/<%= ticketData[x].getId() %>">
                 View Ticket
             </A>

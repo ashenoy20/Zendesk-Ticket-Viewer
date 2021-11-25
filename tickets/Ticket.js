@@ -1,3 +1,7 @@
+/**
+ * Ticket class stores key data values associated with object data
+ * retrieved from Zendesk API
+ */
 class Ticket {
 
     constructor(id, subject, date, description){

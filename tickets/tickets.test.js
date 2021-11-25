@@ -4,6 +4,9 @@ const Ticket = require('./Ticket')
 
 const mockNextFn = (placeholder) => {}
 
+/**
+ * Unit Tests for makeRequest()
+ */
 describe("makeRequest Test", () => {
 
     describe("when makeRequest is called", () => {
@@ -26,6 +29,9 @@ describe("makeRequest Test", () => {
 
 })
 
+/**
+ * Unit Tests for getTickets()
+ */
 describe("getTickets Test", () => {
     describe("When parameters are valid", () => {
         it("Should return an array of objects", async () => {
@@ -88,6 +94,9 @@ describe("getTickets Test", () => {
 
 })
 
+/**
+ * Unit Tests for getSingleTicket()
+ */
 describe("getSingleTicket Test", () => {
     describe("When parameters are valid", () => {
         it("Should return a single object", async () => {
@@ -133,6 +142,9 @@ describe("getSingleTicket Test", () => {
 
 })
 
+/**
+ * Unit Tests for getTotalCount()
+ */
 describe("getTotalCount Test", () => {
     describe("When API and credentials are correct", () => {
         it("Should return an integer value", async () => {
@@ -173,6 +185,9 @@ describe("getTotalCount Test", () => {
 
 })
 
+/**
+ * Unit Tests for convertTickets()
+ */
 describe("convertTickets Test", () => {
     describe("When input is an array with length >= 1", () => {
         it("Should return an array with items of type Ticket", () => {
