@@ -46,5 +46,6 @@ To perform the unit tests, simply run the following command
 ```
 npm test
 ```
+**For further inspection, test files are located in the tickets directory**
 
 That will be all, thank you for this exercise :D !
