@@ -35,7 +35,8 @@ npm start
 I used basic authorization for my requests to Zendesk API. All my credentials, port number, and subdomain are saved in the .env file. By default, the port number is 8080, 
 however if you have a service running there already, I recommend changing the port number in the .env file. If you want to make calls to your subdomain, I also recommend to change the subdomain, username, and password fields in the .env file so the web application runs fine.
 
-- After starting the program, type in the address bar in the browser of your choice 'localhost:{YOUR_PORT_NUMBER}/' (Example: localhost:8080/)
+- After starting the program, type in the address bar in the browser of your choice 'localhost:{YOUR_PORT_NUMBER}/' 
+  (Example: localhost:8080/)
 - This should navigate you to the home page, hopefully all goes well :)
 
 ## Testing
