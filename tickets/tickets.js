@@ -32,7 +32,7 @@ router.get("/:pageNum", async (req, res, next) => {
     if(parseInt(pageNum) === 0){
         return res.redirect('/tickets/1')
     } 
-
+    
     const ticketResponse = await getTickets(pageNum, TICKETS_PER_PAGE, next)
 
     if(!ticketResponse){
@@ -40,12 +40,11 @@ router.get("/:pageNum", async (req, res, next) => {
     }
 
     const value =  await getTotalCount(next)
-   
-    if(!value){
+
+    if(!value || ticketResponse.length === 0){
         next(new ExpressError(404, DNE_ERROR_MSG))
         return res.end()
     }
-    
 
     const ticketData = convertTickets(ticketResponse)
     
@@ -188,7 +187,6 @@ const convertTickets = (dataSet) => {
 
 
 module.exports = router
-
 module.exports.makeRequest = makeRequest
 module.exports.getTickets = getTickets
 module.exports.getSingleTicket = getSingleTicket

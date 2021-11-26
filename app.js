@@ -4,6 +4,7 @@ const ticketRoute = require("./tickets/tickets")
 const ExpressError = require("./ExpressError")
 const app = express()
 
+const PORT = process.env.PORT
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
@@ -34,11 +35,11 @@ app.use('*', (req, res, next) => {
  */
 app.use((err, req, res, next) => {
     const {message, status} = err
-    res.status(status).render('../views/error', {message, status})
+    res.status(status).render('../views/error', {message, status, PORT})
 })
 
 
-const PORT = process.env.PORT
+
 app.listen(PORT, () => {
     console.log(`LISTENING ON PORT ${PORT}`)
 })
