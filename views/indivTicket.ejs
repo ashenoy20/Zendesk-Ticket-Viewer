@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ticket <%= singleTicket.getId() %></title>
 </head>
 <body>
     <h2>ID: <%= singleTicket.getId() %> </h2>
@@ -14,6 +14,8 @@
         <h3>Description:</h2>
         <p><%= singleTicket.getDescription() %></p>
     </div>
+
+    <A href="http://localhost:<%= PORT %>/tickets/1">Go Back to Viewer</A>
     
 </body>
 </html>

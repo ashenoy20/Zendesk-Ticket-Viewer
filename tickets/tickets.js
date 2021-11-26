@@ -68,7 +68,7 @@ router.get('/view/:id', async (req, res, next) => {
         const singleTicket = new Ticket(id, subject, created_at, description)
 
 
-        res.render('../views/indivTicket', {singleTicket})
+        res.render('../views/indivTicket', {singleTicket, PORT})
     }
 
     
